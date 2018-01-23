@@ -1,7 +1,7 @@
 
 
 Responsive background images on containers and hero-headers
------------------------------------------------------------
+===========================================================
 
  - include provided jquery.responsivebackground.js in your site's header by using wordpress enqueue or including it.
  - If using Wordpress you can also include class.responsivebackground.php in your project.
@@ -18,7 +18,20 @@ Take a look at below html-output:
 results in errors, which we don't want. So for this method has proved
 to work just as effectively.
 
-Call responsiveBackgroundImage() from within the private function. Look at the following example:
+the uk-cover-background class gives the container some css settings like
+
+    .grid-element {
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+    }
+
+You can also have a add a starter property for the background-image, like
+
+    background-image: url ( https://www.domainname.net/wp-content/uploads/2018/01/image1-150x150.jpg );
+It will however be overwritten as soon as the function executes:
+
+Call responsiveBackgroundImage() from within the private function. Example:
 
     $(document).ready( function () {
 
@@ -64,4 +77,48 @@ example:
 
     { fallbackbreakpoint: { width: 1024, imagewidth: 300 } }
 With this value, when window width is over 1024 pixels, we will fallback to the image with a max of 300w.
+
+PHP function to output image info (Wordpress only)
+----------------------------------
+To make sure you can use ALL imagesizes at your disposal I've included a helper function, wrapped in a class.
+
+make sure to include the class.responsivebackground.php file into your functions.php
+
+The helper-function takes two parameters:
+**id**
+Integer, required. attachment_id for the image.
+
+**image-sizes**
+Array, optional. Array of image-sizes.
+
+example:
+
+    array( 'thumbnail', 'medium' , 'large' )
+
+Will get the image-urls for the thumbnail, medium, large imagesizes, if available.
+
+Example php output
+------------------
+
+    <?php
+    $id = get_post_thumbnail_id();
+
+    echo '<div class="img uk-hidden" data-srcset="'.
+	     esc_attr(
+		     responsivebackground::get_intermediate_sizes_srcset(
+			     $id ,
+			     array( 'my-mini-square',
+					    'thumbnail',
+					    'big-square'
+					  )
+			 )
+		 ) .
+		 '" data-fullsize="' .
+		 wp_get_attachment_image_src( $id, 'full' )[0].
+		 '"></div>';
+	?>
+
 > Written with [StackEdit](https://stackedit.io/).
+
+
+
