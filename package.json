@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "name": "responsiveBackground",
+  "description": "",
+  "keywords": [
+    "css",
+    "jquery",
+    "javascript",
+    "component",
+    "responsive",
+    "mobile"
+  ],
+  "copyright": "Copyright 2018",
+  "homepage": "http://www.badabing.nl",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/titon/toolkit/blob/master/license.md"
+    }
+  ],
+  "author": {
+    "name": "Didou Schol"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ComputerWolf/SlickNav"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-header": "^1.8.9",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4"
+  },
+  "dependencies": {
+    "jquery": ">=1.7"
+  }
+}

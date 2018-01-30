@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="style.css">
+<title>Responsive Background Demo - Responsive Hero Image for jQuery</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<img class="hidden images" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
+<h1>Demo 1</h1>
+<div class="hero-image demo1">
+<img class="hidden" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
+  <div class="hero-text">
+    <h1>I am John Doe</h1>
+    <p>And I'm a Photographer</p>
+    <button>Hire me</button>
+  </div>
+</div>
+<h1>Demo 2</h1>
+<div class="hero-image demo2">
+<img class="hidden" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
+  <div class="hero-text">
+    <h1>I am John Doe</h1>
+    <p>And I'm a Photographer</p>
+    <button>Hire me</button>
+  </div>
+</div>
+<h1>Demo 3</h1>
+<div class="hero-image demo3">
+  <div class="hero-text">
+    <h1>I am John Doe</h1>
+    <p>And I'm a Photographer</p>
+    <button>Hire me</button>
+  </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="../dist/jquery.responsivebackground.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.hero-image.demo1').responsiveBackground();
+	$('.hero-image.demo2').responsiveBackground({breakpoints:[{width:300, imagesize: 100}]});
+	$('.hero-image.demo3').responsiveBackground({
+		img: '.demo2 img',
+		breakpoints:[
+				{ width: 300, imagesize: 500 }, {width:800, imagesize: 300}
+			],
+		fallbackbreakpoint: { width: 1024, imagesize: -1 }
+		});
+	$('.hero-image.demo3').responsiveBackground( 'setElement', '.hero-image.demo1' );
+});
+</script>
+</body>
+</html>
