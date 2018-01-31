@@ -4,52 +4,106 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="style.css">
 <title>Responsive Background Demo - Responsive Hero Image for jQuery</title>
-
-<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<img class="hidden images" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
-<h1>Demo 1</h1>
-<div class="hero-image demo1">
-<img class="hidden" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
-  <div class="hero-text">
-    <h1>I am John Doe</h1>
-    <p>And I'm a Photographer</p>
-    <button>Hire me</button>
-  </div>
-</div>
-<h1>Demo 2</h1>
-<div class="hero-image demo2">
-<img class="hidden" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
-  <div class="hero-text">
-    <h1>I am John Doe</h1>
-    <p>And I'm a Photographer</p>
-    <button>Hire me</button>
-  </div>
-</div>
-<h1>Demo 3</h1>
-<div class="hero-image demo3">
-  <div class="hero-text">
-    <h1>I am John Doe</h1>
-    <p>And I'm a Photographer</p>
-    <button>Hire me</button>
-  </div>
-</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="../dist/jquery.responsivebackground.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.hero-image.demo1').responsiveBackground();
-	$('.hero-image.demo2').responsiveBackground({breakpoints:[{width:300, imagesize: 100}]});
-	$('.hero-image.demo3').responsiveBackground({
-		img: '.demo2 img',
-		breakpoints:[
-				{ width: 300, imagesize: 500 }, {width:800, imagesize: 300}
+	<h1>Demo 1</h1>
+	<p>Hero image using first &lt;img&gt; found under element. Use srcset images to make sure smallest possible image will fit horizontally.</p>
+	<pre><code>
+
+		$('.hero-image.demo1').responsiveBackground();
+
+	</code></pre>
+	<div class="hero-image demo1">
+	<img class="hidden" src="cat_and_mouse.jpg" srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w">
+	  <div class="hero-text">
+	    <h1>Here's a picture of a sleeping cat</h1>
+	    <p>You know you love it</p>
+	    <button>Pet me</button>
+	  </div>
+	</div>
+	<h1>Demo 2</h1>
+	<p>Hero image using first &lt;img&gt; found under element. This time, breakpoints were set. When under a certain 'width', use smallest possible image that will at least fit 'imagesize'. When setting the fallbackbreakpoint any window size outside the range of the breakpoints an image of at least 'imagesize' (but nearest) will be used.</p>
+	<p>In this example the background is at very low quality when viewed on small screens, at highest quality from 350-800 pixels and on medium quality for bigger screens. This way, when serving a masonry grid, you don't need to compromise on which imageresolution to use.</p>
+	<pre><code>
+
+		$('.hero-image.demo2').responsiveBackground({
+			breakpoints: 	[
+				{width:350, imagesize: 100},
+				{width:800, imagesize: -1}
 			],
-		fallbackbreakpoint: { width: 1024, imagesize: -1 }
+			fallbackbreakpoint: { width: 1024, imagesize: 400 }
 		});
-	$('.hero-image.demo3').responsiveBackground( 'setElement', '.hero-image.demo1' );
-});
-</script>
+
+
+	</code></pre>
+	<div class="hero-image demo2">
+		<img class="hidden atlas_images" src="atlas_green-800.jpg" srcset="atlas_green-150.jpg 150w, atlas_green-400.jpg 400w, atlas_green-800.jpg 800w">
+	  <div class="hero-text">
+	    <h1>I am John Doe</h1>
+	    <p>And I'm a Photographer</p>
+	    <button>Hire me</button>
+	  </div>
+	</div>
+	<h1>Demo 3</h1>
+	<p>Hero image using &lt;img&gt; found using a specified element, here using the .demo1 img.</p>
+	<p>If needed you can reset the source image. In this example when we click on the Hero header it is set to the img used in 'Demo 2'. We need to call the 'redraw' method to make sure it is applied immediately.</p>
+	<pre><code>
+
+
+		$('.hero-image.demo3').responsiveBackground({
+			img: '.demo1 img',
+			breakpoints:[
+					{ width: 300, imagesize: 500 },
+					{ width: 800, imagesize: 300 }
+				],
+			fallbackbreakpoint: { width: 1024, imagesize: -1 }
+			});
+
+		$('.hero-image.demo3')
+			.on( 'click' ,
+				function() {
+					$(this).responsiveBackground( 'setImg', '.demo2 img' );
+					$(this).responsiveBackground( 'redraw' );
+				});
+
+	</code></pre>
+	<div class="hero-image demo3">
+	  <div class="hero-text">
+	    <h1>Click on this hero area</h1>
+	    <p>And I will change for you</p>
+	    <button>Or click here</button>
+	  </div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="../dist/jquery.responsivebackground.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.hero-image.demo1').responsiveBackground();
+
+		$('.hero-image.demo2').responsiveBackground({
+			breakpoints: 	[
+				{width:350, imagesize: 100},
+				{width:800, imagesize: -1}
+			],
+			fallbackbreakpoint: { width: 1024, imagesize: 400 }
+		});
+
+		$('.hero-image.demo3').responsiveBackground({
+			img: '.demo1 img',
+			breakpoints:[
+					{ width: 300, imagesize: 500 },
+					{ width: 800, imagesize: 300 }
+				],
+			fallbackbreakpoint: { width: 1024, imagesize: -1 }
+			});
+
+		$('.hero-image.demo3, .demo3 button')
+			.on( 'click' ,
+				function() {
+					$(this).responsiveBackground( 'setImg', '.demo2 img' );
+					$(this).responsiveBackground( 'redraw' );
+				});
+	});
+	</script>
 </body>
 </html>

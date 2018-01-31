@@ -86,7 +86,7 @@
         matchDataProp : function( element ) {
 
             srcset      = $( element ).data('srcset')?$( element ).data('srcset'):$( element ).prop('srcset');
-            imagefull   = $( element ).data('fullsize')?$( element ).data('fullsize'):$( element ).prop('src');
+            imagefull   = $( element ).data('src')?$( element ).data('src'):$( element ).prop('src');
 
             return { srcset: srcset , imagefull: imagefull };
         },
@@ -220,7 +220,11 @@
         	this.settings._element = $( newElement );
         },
 
-        reDraw : function() {
+        setImg: function( newSource ) {
+        	this.settings.img = newSource;
+        },
+
+        redraw : function() {
             var bp = this.getBreakpoint();
             this.settings.currentBp = bp;
         	this.setResponsiveBackground();

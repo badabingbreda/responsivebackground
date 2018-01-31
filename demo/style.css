@@ -1,10 +1,23 @@
 body, html {
-    height: 100%;
-    margin: 0;
+	width:auto;
+   	margin: 0;
+    padding: 10px;
+    font-family: verdana;
+    font-size: 14px;
+    line-height: 1.7em;
+}
+
+pre {
+	background-color: #f1f1f1;
+	border:1px solid #d0d0d0;
+	overflow: auto;
+	width:100%;
+	padding: 0;
 }
 
 .hero-image {
-  height: 50%;
+  height: 30vh;
+  width:100%;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,4 +52,45 @@ body, html {
 .hero-text button:hover {
   background-color: #555;
   color: white;
+}
+
+/**
+ * advanced_demo.html css
+ */
+
+.grid-item {
+	width: 20%;
+	height:0;
+	padding-top:20%;
+	background-position: center center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+.grid-item--width2 { width: 40%;height:0; padding-top:20%; }
+
+.grid-sizer {
+	width:20%;
+}
+.gutter-size {
+	width:0;
+}
+
+@media (max-width: 400px ) {
+	.grid-item {
+		width:25%;
+	}
+}
+@media (min-width: 800px ) {
+	.grid-item {
+		width:50%;
+	}
+}
+@media (min-width: 1100px ) {
+	.grid-item {
+		width:33%;
+	}
+	.grid-item:nth-child(even) {
+		width:66%;
+	}
+
 }

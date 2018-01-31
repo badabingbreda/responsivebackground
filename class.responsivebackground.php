@@ -1,9 +1,4 @@
 <?php
-/*!
- * Responsive Background Hero and Div v1.0.0
- * (c) 2018 Didou Schol
- * licensed under MIT
- */
 
 class responsivebackground {
 

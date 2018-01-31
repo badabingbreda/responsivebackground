@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="style.css">
+<title>Responsive Background Demo - Responsive Hero Image for jQuery</title>
+</head>
+<body>
+	<h1>Advanced Demo</h1>
+	<p>Depending on your needs you might need diffent @media queries, resizing your masonry grid with applied background. But on mobile you might only need very small images, while for bigger screens you need bigger images. The responsiveBackground will always attempt to return the smallest possible image to only download what's needed.</p>
+	<p>In this example we create 200 grid-item elements using javascript and alternate the backgrounds between a kitty and a hitchhiker. For each image a &lt;div&gt; element is created with a data-srcset and data-src property. We can re-use the div for each set to minimize the code. We use a &lt;div&gt; element because as opposed to &lt;img&gt; element the src-property will have no initial load an image. in the options of responsiveBackground we set the img-parameter, to use that div.cat_images element.</p>
+	<p>Now resize and watch what happens!<p>
+	<pre><code>
+
+	//set a responsive Background for each odd grid-item
+	$('.grid-item:nth-child(odd)').responsiveBackground( { img: '.cat_images' } );
+
+	//set a responsive Background for each even grid-item
+	$('.grid-item:nth-child(even)').responsiveBackground( { img: '.atlas_images' } );
+
+	</code></pre>
+	<div class="hidden cat_images" data-src="cat_and_mouse.jpg" data-srcset="cat_and_mouse-100.jpg 100w, cat_and_mouse-300.jpg 300w, cat_and_mouse-520.jpg 520w, cat_and_mouse-1024.jpg 1024w"></div>
+	<div class="hidden atlas_images" data-src="atlas_green-800.jpg" data-srcset="atlas_green-150.jpg 150w, atlas_green-400.jpg 400w, atlas_green-800.jpg 800w"></div>
+	<div class="hidden ny_images" data-src="new_york-800.jpg" data-srcset="new_york-150.jpg 150w, new_york-400.jpg 400w, new_york-800.jpg 800w"></div>
+	<div class="grid"></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="../dist/jquery.responsivebackground.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var $griditem = '<div class="grid-item"></div>';
+
+	// add a few extra grid-item elements
+	for( var i = 0; i < 200; i++ ) {
+		 $( $griditem ).appendTo( '.grid' );
+	}
+
+	//set a responsive Background for each odd grid-item
+	$('.grid-item:nth-child(odd)').responsiveBackground( { img: '.cat_images' } );
+
+	//set a responsive Background for each even grid-item
+	$('.grid-item:nth-child(even)').responsiveBackground( { img: '.atlas_images' } );
+
+	// create a masonry grid
+	$('.grid').masonry({
+		  // options
+		  itemSelector: '.grid-item',
+		  columnWidth: 0
+	});
+
+});
+</script>
+</body>
+</html>
