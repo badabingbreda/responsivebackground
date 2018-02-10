@@ -1,4 +1,5 @@
 ;( function( $ , document , window ){
+    "use strict";
     /**
      * default settings
      * @type {Object}
@@ -72,7 +73,7 @@
             	$getElement = $( element ).find( get ).length ?$( element ).find( get ):$( get );
             }
 
-        	dataProp = this.matchDataProp( $getElement );
+        	var dataProp = this.matchDataProp( $getElement );
 
             return dataProp;
 
@@ -85,8 +86,8 @@
          */
         matchDataProp : function( element ) {
 
-            srcset      = $( element ).data('srcset')?$( element ).data('srcset'):$( element ).prop('srcset');
-            imagefull   = $( element ).data('src')?$( element ).data('src'):$( element ).prop('src');
+            var srcset      = $( element ).data('srcset')?$( element ).data('srcset'):$( element ).prop('srcset');
+            var imagefull   = $( element ).data('src')?$( element ).data('src'):$( element ).prop('src');
 
             return { srcset: srcset , imagefull: imagefull };
         },
@@ -153,7 +154,7 @@
          */
         arrangeSizes : function ( srcset ) {
 
-            $this = this;
+            var $this = this;
 
             var arr = [],
                 sizes = [];
