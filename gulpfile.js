@@ -1,10 +1,10 @@
-var pkg = require('./package.json'),
+var
+    pkg = require('./package.json'),
     gulp = require('gulp'),
+    plumber = require('gulp-plumber'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    minify = require('gulp-minify-css'),
-    plumber = require('gulp-plumber'),
     replace = require('gulp-replace'),
     banner = ['/*!',
             ' * Responsive Background Hero and Div v<%= pkg.version %>',
@@ -13,7 +13,8 @@ var pkg = require('./package.json'),
             ' */',
             ''].join('\n');
 
-    var phpbanner = ['<?php', banner ].join('\n');
+var
+    phpbanner = ['<?php', banner ].join('\n');
 
 gulp.task('watch', function() {
   gulp.watch(['*.js', '*.php'], ['js', 'php']);
