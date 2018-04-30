@@ -93,10 +93,10 @@ array, optional. If NOT provided images will be made to fit according to srcset 
 
 If breakpoints IS provided, they need to be in the following format:
 
-    breakpoints: { [
+    breakpoints: [
         { width: 350, imagewidth: 640 },
         { width: 640, imagewidth: 1024 }
-      ] }
+      ]
 Whenever window-width drops below given width-size, we will try to match an image of min-width imagewidth. If we go over the highest available width it will use the image-url found in data-fullsize.
 
 **fallbackbreakpoint**
